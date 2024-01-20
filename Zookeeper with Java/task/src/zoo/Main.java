@@ -1,3 +1,5 @@
+package zoo;
+
 import java.util.Scanner;
 
 public class Main {
@@ -129,13 +131,25 @@ public class Main {
         String userChoice;
 
         do {
-            System.out.println("Please enter the number of the habitat you would like to view:");
+            System.out.println("Please enter the number of the habitat you would like to view (type 'exit' to leave):");
             userChoice = scanner.nextLine();
 
             if (userChoice.equals("exit")){
                 System.out.println("See you later!");
             } else {
-                System.out.println(animals[Integer.parseInt(userChoice)]);
+                try {
+                    int habitat = Integer.parseInt(userChoice);
+                    if (habitat < 0 || habitat > animals.length - 1){
+                        System.out.println("This habitat is empty!");
+                        System.out.println();
+                    } else {
+                        System.out.println(animals[habitat]);
+                        System.out.println();
+                    }
+                } catch (NumberFormatException nfe){
+                    System.out.println("You have chosen an invalid option!");
+                    System.out.println();
+                }
             }
         } while (!userChoice.equals("exit"));
     }
